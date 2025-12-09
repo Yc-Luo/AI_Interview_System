@@ -1,0 +1,52 @@
+# 依赖目录
+node_modules/
+pip-wheel-metadata/
+*.egg-info/
+__pycache__/
+
+# 构建产物
+dist/
+build/
+*.pyc
+
+# 配置文件
+.env
+.env.local
+.env.*.local
+
+# 日志文件
+logs/
+*.log
+app/logs/
+nginx_logs/
+
+# 数据库文件
+*.db
+pg_data/
+redis_data/
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 测试文件
+test.db
+test_export.xlsx
+
+# Docker相关
+.dockerignore
+docker-compose.override.yml
+
+# 证书文件
+*.pem
+*.key
+*.crt
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
