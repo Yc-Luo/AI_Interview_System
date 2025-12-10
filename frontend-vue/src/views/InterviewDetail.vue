@@ -203,7 +203,7 @@
                                     <i class="far fa-eye text-blue-600"></i>
                                 </button>
                             </td>
-                            <td class="w-16 font-medium text-gray-900">{{ index + 1 }}</td>
+                            <td class="w-16 font-medium text-gray-900">{{ (currentPage - 1) * pageSize + index + 1 }}</td>
                             <td class="w-24">{{ interview.user_id || interview.visitor_uuid || 'N/A' }}</td>
                             <td class="w-32">{{ formatDateTime(interview.created_at) }}</td>
                             <td class="w-32">{{ interview.end_time ? formatDateTime(interview.end_time) : '进行中' }}</td>
@@ -262,7 +262,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import apiService from '../services/api'
 
@@ -304,6 +304,13 @@ const totalInterviews = ref(0)
 const completedInterviews = ref(0)
 const activeInterviews = ref(0)
 const averageDuration = ref(0)
+
+// 分页计算属性
+const paginatedInterviews = computed(() => {
+  const start = (currentPage.value - 1) * parseInt(pageSize.value)
+  const end = start + parseInt(pageSize.value)
+  return interviews.value.slice(start, end)
+})
 
 // 格式化日期时间
 function formatDateTime(dateString) {
